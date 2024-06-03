@@ -16,7 +16,7 @@ const SignUp = () => {
         signUpSystem(data.email, data.password)
             .then(res => {
                 console.log(res.user)
-                userUpdateSystem(data.name)
+                userUpdateSystem(data.name, data.PhotoURL)
                     .then(res => {
                         console.log(res.user)
                     })
@@ -39,6 +39,11 @@ const SignUp = () => {
                     <div className='flex flex-col w-full'>
                         <label htmlFor="">Name</label>
                         <input {...register("name", { required: true })} type="name" placeholder='Enter Your Full Name' className="text-black w-full input input-bordered" />
+                        {errors.name && <span className='text-red-500'>This field is required</span>}
+                    </div>
+                    <div className='flex flex-col w-full'>
+                        <label htmlFor="">PhotoUrl</label>
+                        <input {...register("PhotoURL", { required: true })} type="photo" placeholder='Enter Your Photo Url' className="text-black w-full input input-bordered" />
                         {errors.name && <span className='text-red-500'>This field is required</span>}
                     </div>
                     <div className='flex flex-col w-full'>

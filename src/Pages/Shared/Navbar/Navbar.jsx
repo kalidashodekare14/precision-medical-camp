@@ -66,8 +66,10 @@ const Navbar = () => {
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
                                 {
-                                    user.photoURL ? <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
-                                    : <img alt="Tailwind CSS Navbar component" src={userImage} />
+                                    user.photoURL && <img alt="Tailwind CSS Navbar component" src={user.photoURL} />  
+                                }
+                                {
+                                    user.photoURL || <img alt="Tailwind CSS Navbar component" src={userImage} />
                                 }
                             </div>
                         </div>
@@ -77,7 +79,7 @@ const Navbar = () => {
                                     <span className='text-black'>{user.displayName}</span>
                                 </a>
                             </li>
-                            <li><span className='text-black'>Dashboard</span></li>
+                            <li><Link to="/dashboard/organizer-profile" className='text-black'>Dashboard</Link></li>
                             <li><span onClick={handleLogOut} className='text-black'>Logout</span></li>
                         </ul>
                     </div>
