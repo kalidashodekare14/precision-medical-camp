@@ -4,18 +4,21 @@ import { useQuery } from '@tanstack/react-query';
 import { FaLocationArrow } from 'react-icons/fa';
 import { FaUserDoctor } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import usePopularCamp from '../../../Hooks/usePopularCamp';
 
 const PopularMedicalCamp = () => {
 
-    const axiosPublic = useAxiosPublic()
+    const [populars] = usePopularCamp()
 
-    const { data: populars = [] } = useQuery({
-        queryKey: ['popular'],
-        queryFn: async () => {
-            const res = await axiosPublic.get('/popular-medical-camp')
-            return res.data
-        }
-    })
+    // const axiosPublic = useAxiosPublic()
+
+    // const { data: populars = [] } = useQuery({
+    //     queryKey: ['popular'],
+    //     queryFn: async () => {
+    //         const res = await axiosPublic.get('/popular-medical-camp')
+    //         return res.data
+    //     }
+    // })
 
 
 
