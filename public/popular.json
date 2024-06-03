@@ -1,0 +1,65 @@
+{
+    "popular_medical_camps": [
+      {
+        "camp_name": "Healthy Heart Camp",
+        "image": "https://example.com/heart-camp.jpg",
+        "camp_fees": 50,
+        "date_and_time": "2024-06-15T09:00:00-15:00",
+        "location": "City Health Center, Downtown",
+        "healthcare_professional": "Dr. John Smith, Cardiologist",
+        "participant_count": 120,
+        "description": "Join us for a comprehensive heart health check-up and learn about ways to maintain a healthy heart."
+      },
+      {
+        "camp_name": "Vision Care Camp",
+        "image": "https://example.com/vision-camp.jpg",
+        "camp_fees": 30,
+        "date_and_time": "2024-06-20T10:00:00-16:00",
+        "location": "Community Hall, Uptown",
+        "healthcare_professional": "Dr. Emily Johnson, Ophthalmologist",
+        "participant_count": 110,
+        "description": "Get a thorough eye examination and receive tips on how to protect your vision."
+      },
+      {
+        "camp_name": "Diabetes Management Camp",
+        "image": "https://example.com/diabetes-camp.jpg",
+        "camp_fees": 40,
+        "date_and_time": "2024-07-05T09:00:00-13:00",
+        "location": "Wellness Center, East Side",
+        "healthcare_professional": "Dr. Michael Lee, Endocrinologist",
+        "participant_count": 105,
+        "description": "Learn about diabetes management techniques and get your blood sugar levels checked."
+      },
+      {
+        "camp_name": "Pediatric Health Camp",
+        "image": "https://example.com/pediatric-camp.jpg",
+        "camp_fees": 25,
+        "date_and_time": "2024-07-12T10:00:00-14:00",
+        "location": "Children's Hospital, West End",
+        "healthcare_professional": "Dr. Sarah Brown, Pediatrician",
+        "participant_count": 95,
+        "description": "Bring your children for a full health screening and advice on child health and nutrition."
+      },
+      {
+        "camp_name": "Women's Health Camp",
+        "image": "https://example.com/women-health-camp.jpg",
+        "camp_fees": 35,
+        "date_and_time": "2024-07-18T11:00:00-15:00",
+        "location": "Women's Wellness Clinic, South Side",
+        "healthcare_professional": "Dr. Linda Green, Gynecologist",
+        "participant_count": 90,
+        "description": "Focus on women's health issues, including reproductive health, nutrition, and fitness."
+      },
+      {
+        "camp_name": "Senior Health Camp",
+        "image": "https://example.com/senior-health-camp.jpg",
+        "camp_fees": 45,
+        "date_and_time": "2024-07-25T09:00:00-12:00",
+        "location": "Senior Community Center, Central Park",
+        "healthcare_professional": "Dr. Robert Davis, Geriatrician",
+        "participant_count": 85,
+        "description": "Dedicated to the health and well-being of seniors, offering screenings and wellness tips."
+      }
+    ],
+    "see_all_camps_url": "https://example.com/available-camps"
+  }
