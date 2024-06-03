@@ -66,7 +66,7 @@ const Navbar = () => {
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
                                 {
-                                    user.photoURL && <img alt="Tailwind CSS Navbar component" src={user.photoURL} />  
+                                    user.photoURL && <img alt={user?.displayName} src={user?.photoURL} />  
                                 }
                                 {
                                     user.photoURL || <img alt="Tailwind CSS Navbar component" src={userImage} />

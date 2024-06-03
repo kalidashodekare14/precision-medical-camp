@@ -12,6 +12,10 @@ import OrgainzerProfile from "../Pages/Dashboard/OrganizerProfile/OrgainzerProfi
 import AddACamp from "../Pages/Dashboard/AddACamp/AddACamp";
 import ManageCamps from "../Pages/Dashboard/ManageCamps/ManageCamps";
 import ManageRegisteredCams from "../Pages/Dashboard/ManageRegisteredCams/ManageRegisteredCams";
+import Analytics from "../Pages/Dashboard/Analytics/Analytics";
+import RegisteredCamps from "../Pages/Dashboard/RegisteredCamps/RegisteredCamps";
+import ParticipantProfile from "../Pages/Dashboard/ParticipantProfile/ParticipantProfile";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
     {
@@ -66,6 +70,24 @@ const router = createBrowserRouter([
                 path: '/dashboard/manage-registered-camps',
                 element: <ManageRegisteredCams></ManageRegisteredCams>
             },
+            // user routes
+            {
+                path: 'analytics',
+                element: <Analytics></Analytics>
+            },
+            {
+                path: 'participant-profile',
+                element: <ParticipantProfile></ParticipantProfile>
+            },
+            {
+                path: 'registered-camps',
+                element: <RegisteredCamps></RegisteredCamps>
+            },
+            {
+                path: 'payment-history',
+                element: <PaymentHistory></PaymentHistory>
+            }
+            
             
         ]
     }

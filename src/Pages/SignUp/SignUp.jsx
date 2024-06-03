@@ -5,10 +5,15 @@ import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import google from '../../assets/google.png'
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const SignUp = () => {
-    const { signUpSystem, userUpdateSystem } = useAuth()
+    const { signUpSystem, userUpdateSystem, googleLoginSystem } = useAuth()
     const { register, handleSubmit, formState: { errors } } = useForm()
+    const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
 
     const onSubmit = (data) => {
@@ -18,6 +23,16 @@ const SignUp = () => {
                 console.log(res.user)
                 userUpdateSystem(data.name, data.PhotoURL)
                     .then(res => {
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosSecure.post('/users', userInfo)
+                        .then(res =>{
+                            if(res.data.insertedId){
+                                console.log('user add for database')
+                            }
+                        })
                         console.log(res.user)
                     })
                     .catch(error => {
@@ -29,6 +44,28 @@ const SignUp = () => {
             .catch(error => {
                 console.log(error.message)
             })
+    }
+
+    const handleGoogle = () =>{
+        googleLoginSystem()
+        .then(res =>{
+            console.log(res.user)
+            const userInfo = {
+                name: res?.user?.displayName,
+                email: res?.user?.email 
+            }
+            axiosPublic.post('/users', userInfo)
+            .then(res =>{
+                console.log(res.data)
+            })
+            .catch(error =>{
+                console.log(error.message)
+            })
+            navigate('/')
+        })
+        .catch(error =>{
+            console.log(error.message)
+        })
     }
 
 
@@ -56,8 +93,15 @@ const SignUp = () => {
                         <input {...register("password", { required: true })} placeholder='Enter Your Password' type="password" className="text-black w-full input input-bordered" />
                         {errors.password && <span className='text-red-500'>This field is required</span>}
                     </div>
-                    <input className='btn w-32' type="submit" value="Login" />
+                    <div className='text-center'>
+                        <input className='btn w-52' type="submit" value="Sign Up" />
+                    </div>
                 </form>
+                <div className='text-center my-5'>
+                    <button onClick={handleGoogle} className='btn w-32'>
+                        <img className='w-10' src={google} alt="" />
+                    </button>
+                </div>
                 <span>Have an account yet? <Link to="/login" className='text-green-500'>Login</Link></span>
             </div>
             <ToastContainer />
