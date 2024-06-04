@@ -39,7 +39,7 @@ const AddACamp = () => {
                 camp_fees: data.camp_fees,
                 date_and_time: startDate,
                 location: data.location,
-                participant_count: '0',
+                participant_count: 0,
                 description: data.description,
                 image: res.data.data.display_url
 
