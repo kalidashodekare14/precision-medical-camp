@@ -16,6 +16,7 @@ import Analytics from "../Pages/Dashboard/Analytics/Analytics";
 import RegisteredCamps from "../Pages/Dashboard/RegisteredCamps/RegisteredCamps";
 import ParticipantProfile from "../Pages/Dashboard/ParticipantProfile/ParticipantProfile";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import ManageUpdate from "../Pages/Dashboard/ManageUpdate/ManageUpdate";
 
 const router = createBrowserRouter([
     {
@@ -67,9 +68,15 @@ const router = createBrowserRouter([
                 element: <ManageCamps></ManageCamps>
             },
             {
+                path: '/dashboard/manage-update/:id',
+                element: <ManageUpdate></ManageUpdate>,
+                loader: ({params}) => fetch(`http://localhost:5000/popular-medical-camp/${params.id}`)
+            },
+            {
                 path: '/dashboard/manage-registered-camps',
                 element: <ManageRegisteredCams></ManageRegisteredCams>
             },
+            
             // user routes
             {
                 path: 'analytics',

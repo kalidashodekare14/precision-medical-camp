@@ -5,14 +5,14 @@ import { useQuery } from '@tanstack/react-query';
 const usePopularCamp = () => {
 
     const axiosSecure = useAxiosSecure()
-    const { data: populars = [], refetch } = useQuery({
+    const { data: populars = [], isPending: loading, refetch } = useQuery({
         queryKey: ['popular'],
         queryFn: async () => {
             const res = await axiosSecure.get('/popular-medical-camp')
             return res.data
         }
     })
-    return [populars, refetch]
+    return [populars, loading, refetch]
 };
 
 export default usePopularCamp;

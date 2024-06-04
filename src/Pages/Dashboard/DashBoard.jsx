@@ -13,8 +13,8 @@ const DashBoard = () => {
     const [isOranizer] = useOrganizer()
 
     return (
-        <div className='flex'>
-            <div className='w-[20%] border min-h-screen'>
+        <div className='flex flex-col lg:flex-row'>
+            <div className='lg:w-[20%] border lg:min-h-screen'>
                 <ul className='menu'>
                     {
                         isOranizer ? <>

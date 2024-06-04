@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import DatePicker from "react-datepicker";
-
-
-import "react-datepicker/dist/react-datepicker.css";
-import { useForm } from 'react-hook-form';
+import { useLoaderData } from 'react-router-dom';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
+const ManageUpdate = () => {
 
+    const { _id, camp_name, healthcare_professional, camp_fees, location, description } = useLoaderData()
 
-const AddACamp = () => {
 
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
@@ -36,18 +36,17 @@ const AddACamp = () => {
             const campItem = {
                 camp_name: data.camp_name,
                 healthcare_professional: data.healthcare_professional,
-                camp_fees: data.camp_fees,
                 date_and_time: startDate,
                 location: data.location,
-                participant_count: '0',
+                camp_fees: data.camp_fees,
                 description: data.description,
                 image: res.data.data.display_url
 
             }
             console.log(campItem)
-            const menuRes = await axiosSecure.post('/popular-medical-camp', campItem)
+            const menuRes = await axiosSecure.patch(`/manage-update/${_id}`, campItem)
             console.log(menuRes.data)
-            if (menuRes.data.insertedId) {
+            if (menuRes.data.modifiedCount > 0) {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -70,11 +69,11 @@ const AddACamp = () => {
                     <div className='flex items-center space-x-3'>
                         <div className='flex flex-col w-full'>
                             <label htmlFor="">Camp Name</label>
-                            <input {...register("camp_name")} className=' input input-bordered' type="text" />
+                            <input {...register("camp_name")} defaultValue={camp_name} className=' input input-bordered' type="text" />
                         </div>
                         <div className='w-full flex flex-col'>
                             <label htmlFor=""> Healthcare Professional Name</label>
-                            <input {...register("healthcare_professional")} className='input input-bordered' type="text" />
+                            <input {...register("healthcare_professional")} defaultValue={healthcare_professional} className='input input-bordered' type="text" />
                         </div>
                     </div>
                     <div className='mt-3 w-full space-x-3 flex items-center'>
@@ -90,15 +89,15 @@ const AddACamp = () => {
                     <div className='flex items-center space-x-3'>
                         <div className='mt-3 w-full flex flex-col'>
                             <label htmlFor="">Location</label>
-                            <input {...register("location")} className=' input input-bordered' type="text" />
+                            <input {...register("location")} defaultValue={location} className=' input input-bordered' type="text" />
                         </div>
                         <div className='mt-3 w-full flex flex-col'>
                             <label htmlFor="">Camp Fees</label>
-                            <input {...register("camp_fees")} className=' input input-bordered' type="text" />
+                            <input {...register("camp_fees")} defaultValue={camp_fees} className=' input input-bordered' type="text" />
                         </div>
                     </div>
                     <div className='w-full mt-3'>
-                        <textarea {...register("description")} placeholder='Description' className='w-full textarea textarea-bordered' id=""></textarea>
+                        <textarea {...register("description")} defaultValue={description} placeholder='Description' className='w-full textarea textarea-bordered' id=""></textarea>
                     </div>
                     <div className='text-center'>
                         <input className='btn w-52' type="submit" value="Add Camp" />
@@ -109,4 +108,4 @@ const AddACamp = () => {
     );
 };
 
-export default AddACamp;
+export default ManageUpdate;
