@@ -10,14 +10,22 @@ const ManageRegisteredCams = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
 
-    const { data: manageCamps = [] } = useQuery({
+    const { data: manageCamps = [], refetch } = useQuery({
         queryKey: ['regisCamp', user.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/register-camp/${user?.email}`)
             return res.data
+
         }
     })
 
+
+    const handleConfirmStatus = async (manageCamp) => {
+        console.log(manageCamp._id)
+        const res = await axiosSecure.patch(`/register-camp/${manageCamp._id}`)
+        console.log(res.data)
+        refetch()
+    }
 
 
     return (
@@ -47,15 +55,12 @@ const ManageRegisteredCams = () => {
                                 <td>{manageCamp.camp_name}</td>
                                 <td>${manageCamp.camp_fees}</td>
                                 <td>
-                                    <button className='btn'>
-                                        {
-                                            manageCamp.payment_status === 'Pay' ? 'Unpain' : 'Paid'
-                                        }
-
-                                    </button>
+                                    {
+                                        manageCamp.payment_status === 'Pay' ? 'Unpain' : 'Paid'
+                                    }
                                 </td>
                                 <td>
-                                    <button className='btn'>
+                                    <button disabled={manageCamp.payment_status !== 'Paid'} onClick={() => handleConfirmStatus(manageCamp)} className='btn'>
                                         {manageCamp.confirmmation_status}
                                     </button>
                                 </td>

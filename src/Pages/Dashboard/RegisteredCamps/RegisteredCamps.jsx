@@ -13,6 +13,7 @@ const RegisteredCamps = () => {
         queryFn: async () => {
             const res = await axiosSecure.get(`/register-camp/${user?.email}`)
             return res.data
+            
         }
     })
 
@@ -53,7 +54,7 @@ const RegisteredCamps = () => {
                                 </td>
                                 <td>{regiscamp.confirmmation_status}</td>
                                 <td>
-                                    <button className='btn'>Cancel</button>
+                                    <button disabled={regiscamp.payment_status !== "Pay"} className='btn'>Cancel</button>
                                 </td>
                                 <td>
                                     <button disabled={regiscamp.feedback !== 'Feedback'}  className='btn'>
