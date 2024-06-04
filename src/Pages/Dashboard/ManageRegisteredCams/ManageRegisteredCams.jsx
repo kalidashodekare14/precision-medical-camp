@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../Hooks/useAuth';
 import { MdCancel } from 'react-icons/md';
 import { FaCheck, FaCheckCircle } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const ManageRegisteredCams = () => {
 
@@ -25,6 +26,33 @@ const ManageRegisteredCams = () => {
         const res = await axiosSecure.patch(`/register-camp/${manageCamp._id}`)
         console.log(res.data)
         refetch()
+    }
+
+    const handleCancel = async (manageCamp) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axiosSecure.delete(`/register-camp/${manageCamp._id}`)
+                console.log(res.data)
+                if(res.data.deletedCount > 0){
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your Registred Camp has been Deleted",
+                        icon: "success"
+                    });
+                }
+                refetch()
+               
+            }
+        });
+
     }
 
 
@@ -65,13 +93,15 @@ const ManageRegisteredCams = () => {
                                     </button>
                                 </td>
                                 <td>
-                                    {
-                                        manageCamp.confirmmation_status !== 'Pending' ? <MdCancel className='text-[26px] text-red-600' />
-                                            :
-                                            <FaCheckCircle className='text-2xl text-[#52bd33]' />
-                                    }
-
-
+                                    <div>
+                                        {
+                                            manageCamp.confirmmation_status !== 'Pending' ? <MdCancel className='text-[26px] text-red-600' />
+                                                :
+                                                <div onClick={() => handleCancel(manageCamp)}>
+                                                    <FaCheckCircle className='text-2xl text-[#52bd33]' />
+                                                </div>
+                                        }
+                                    </div>
                                 </td>
 
                             </tr>)
