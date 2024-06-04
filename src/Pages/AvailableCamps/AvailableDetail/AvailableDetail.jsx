@@ -35,10 +35,14 @@ const AvailableDetail = () => {
             healthcare_professional: available.healthcare_professional,
             participant_name: user?.displayName,
             participant_email: user?.email,
+            payment_status: "Pay",
+            confirmmation_status: "Pending",
+            feedback: 'N/A',  
             age,
             gender,
             phone_number,
-            emergency_contact
+            emergency_contact,
+            
         }
 
 
