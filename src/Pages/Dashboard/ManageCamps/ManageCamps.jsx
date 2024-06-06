@@ -72,7 +72,6 @@ const ManageCamps = () => {
                 camp_fees: data.camp_fees,
                 date_and_time: startDate,
                 location: data.location,
-                camp_fees: data.camp_fees,
                 participant_count: '0',
                 description: data.description,
                 image: res.data.data.display_url

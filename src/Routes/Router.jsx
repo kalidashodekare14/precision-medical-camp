@@ -17,6 +17,7 @@ import RegisteredCamps from "../Pages/Dashboard/RegisteredCamps/RegisteredCamps"
 import ParticipantProfile from "../Pages/Dashboard/ParticipantProfile/ParticipantProfile";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import ManageUpdate from "../Pages/Dashboard/ManageUpdate/ManageUpdate";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -79,20 +80,25 @@ const router = createBrowserRouter([
             
             // user routes
             {
-                path: 'analytics',
+                path: '/dashboard/analytics',
                 element: <Analytics></Analytics>
             },
             {
-                path: 'participant-profile',
+                path: '/dashboard/participant-profile',
                 element: <ParticipantProfile></ParticipantProfile>
             },
             {
-                path: 'registered-camps',
+                path: '/dashboard/registered-camps',
                 element: <RegisteredCamps></RegisteredCamps>
             },
             {
-                path: 'payment-history',
+                path: '/dashboard/payment-history',
                 element: <PaymentHistory></PaymentHistory>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({params}) => fetch(`http://localhost:5000/camp-register/${params.id}`)
             }
             
             

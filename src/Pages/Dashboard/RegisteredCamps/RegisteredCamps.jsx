@@ -7,6 +7,13 @@ import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import { MdOutlineCancel } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+
+// ToDo: add publicable key
+const stripePromise = loadStripe(`${import.meta.env.VITE_PAYMENT_KEY}`)
 
 
 const RegisteredCamps = () => {
@@ -68,6 +75,7 @@ const RegisteredCamps = () => {
 
 
 
+
     return (
         <div>
             <div>
@@ -96,9 +104,12 @@ const RegisteredCamps = () => {
                                 <td>${regiscamp.camp_fees}</td>
                                 <td>{regiscamp.participant_name}</td>
                                 <td>
-                                    <button className='btn'>
-                                        {regiscamp.payment_status}
-                                    </button>
+                                    <Link className='disabled'>
+                                        <button disabled={regiscamp.payment_status !== 'Pay'} className='btn'>
+                                            {regiscamp.payment_status}
+                                        </button>
+                                    </Link>
+
                                 </td>
                                 <td>{regiscamp.confirmmation_status}</td>
                                 <td>
@@ -123,7 +134,7 @@ const RegisteredCamps = () => {
                                                     <textarea placeholder='Please Your Feedback' name='feedback' className='h-[20vh] w-full textarea textarea-bordered'></textarea>
                                                     <input className='btn' type="submit" value="Submit" />
                                                 </form>
-                                            <ToastContainer />
+                                                <ToastContainer />
                                             </div>
                                         </div>
                                     </dialog>
