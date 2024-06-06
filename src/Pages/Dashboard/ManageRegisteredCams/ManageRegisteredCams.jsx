@@ -32,6 +32,8 @@ const ManageRegisteredCams = () => {
         refetch()
     }
 
+    
+
     const handleCancel = async (manageCamp) => {
         Swal.fire({
             title: "Are you sure?",
