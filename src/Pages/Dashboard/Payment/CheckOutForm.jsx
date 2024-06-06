@@ -74,6 +74,7 @@ const CheckOutForm = ({ campData }) => {
                 const paymentHistory = {
                     user_name: user?.displayName,
                     user_email: user?.email,
+                    camp_id: campData._id,
                     camp_name: campData.camp_name,
                     camp_fees: campData.camp_fees,
                     payment_status: 'Paid',

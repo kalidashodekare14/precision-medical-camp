@@ -104,7 +104,7 @@ const RegisteredCamps = () => {
                                 <td>${regiscamp.camp_fees}</td>
                                 <td>{regiscamp.participant_name}</td>
                                 <td>
-                                    <Link className='disabled'>
+                                    <Link to={`/dashboard/payment/${regiscamp._id}`}>
                                         <button disabled={regiscamp.payment_status !== 'Pay'} className='btn'>
                                             {regiscamp.payment_status}
                                         </button>

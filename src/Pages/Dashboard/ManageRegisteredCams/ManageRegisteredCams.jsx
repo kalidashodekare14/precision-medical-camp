@@ -25,6 +25,10 @@ const ManageRegisteredCams = () => {
         console.log(manageCamp._id)
         const res = await axiosSecure.patch(`/register-camp/${manageCamp._id}`)
         console.log(res.data)
+        if(res.data.modifiedCount > 0){
+            const res = await axiosSecure.patch(`/payment-history/${manageCamp._id}`)
+            console.log(res.data)
+        }
         refetch()
     }
 
