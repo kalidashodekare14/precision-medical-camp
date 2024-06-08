@@ -2,7 +2,8 @@ import React from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
-import usePagination from '@mui/material/usePagination/usePagination';
+import usePagination from '../../../Hooks/usePagination';
+import { Pagination } from '@mui/material';
 
 const PaymentHistory = () => {
 
@@ -18,6 +19,7 @@ const PaymentHistory = () => {
         }
     })
 
+    console.log(historyInfo)
 
     const {
         currentPage,
@@ -34,6 +36,7 @@ const PaymentHistory = () => {
     const handleChange = (event, value) => {
         setPage(value)
     }
+
 
     console.log(historyInfo)
 
@@ -66,9 +69,17 @@ const PaymentHistory = () => {
                                 </tr>
                             ))
                         }
-
                     </tbody>
                 </table>
+                <div className='flex justify-center items-center my-10'>
+                    <Pagination
+                        count={totalPages}
+                        page={currentPage}
+                        onChange={handleChange}
+                        variant="outlined"
+                        siblingCount={0}
+                        color="primary" />
+                </div>
             </div>
         </div>
     );
