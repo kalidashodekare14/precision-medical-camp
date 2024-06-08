@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import Slider from './Slider/Slider';
 import PopularMedicalCamp from './PopularMedicalCamp/PopularMedicalCamp';
 import { Link } from 'react-router-dom';
+import Feedback from './Feedback/Feedback';
 
 
 
 const Home = () => {
 
+    
 
     return (
         <div>
@@ -19,6 +21,10 @@ const Home = () => {
                 <Link to="/available-camps">
                     <button className='mt-10 btn bg-opacity-0 border-[#29c178] hover:bg-[#29c178]'>See All Camps</button>
                 </Link>
+            </div>
+            <div>
+                <h1 className='text-center text-4xl font-bold'>Participant Feedback</h1>
+                <Feedback></Feedback>
             </div>
         </div>
     );

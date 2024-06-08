@@ -14,7 +14,7 @@ const ManageRegisteredCams = () => {
     const { data: manageCamps = [], refetch } = useQuery({
         queryKey: ['regisCamp', user.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/register-camp/${user?.email}`)
+            const res = await axiosSecure.get(`/manage-register-camp`)
             return res.data
 
         }

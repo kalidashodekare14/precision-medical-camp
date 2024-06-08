@@ -5,15 +5,9 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css'
+import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
-import { MdOutlineCancel } from 'react-icons/md';
-import { Link } from 'react-router-dom';
-
-// ToDo: add publicable key
-const stripePromise = loadStripe(`${import.meta.env.VITE_PAYMENT_KEY}`)
 
 
 const RegisteredCamps = () => {
@@ -31,6 +25,9 @@ const RegisteredCamps = () => {
 
         }
     })
+
+
+    console.log(regisCamps)
 
     const handleCancel = (regiscamp) => {
         Swal.fire({
@@ -63,13 +60,16 @@ const RegisteredCamps = () => {
         const from = e.target
         const feedback = from.feedback.value
         const feedbackInfo = {
+            name: user?.displayName,
+            image: user?.photoURL,
             rating: rating,
             feedback: feedback
         }
         const res = await axiosSecure.post('/rating-feedback', feedbackInfo)
         console.log(res.data)
         if (res.data.insertedId) {
-            toast.success("Your feedback and Rating Successfuly")
+            console.log('successfuly')
+            toast("Wow so easy !")
         }
     }
 
@@ -134,9 +134,9 @@ const RegisteredCamps = () => {
                                                     <textarea placeholder='Please Your Feedback' name='feedback' className='h-[20vh] w-full textarea textarea-bordered'></textarea>
                                                     <input className='btn' type="submit" value="Submit" />
                                                 </form>
-                                                <ToastContainer />
                                             </div>
                                         </div>
+                                        <ToastContainer />
                                     </dialog>
                                 </td>
                             </tr>)

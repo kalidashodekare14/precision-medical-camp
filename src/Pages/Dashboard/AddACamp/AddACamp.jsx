@@ -21,6 +21,7 @@ const AddACamp = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm()
 
@@ -55,6 +56,7 @@ const AddACamp = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                reset()
             }
         }
         console.log(res.data)
