@@ -29,25 +29,25 @@ const PopularMedicalCamp = () => {
                     <figure><img className='h-[40vh]' src={popular.image} alt="Shoes" /></figure>
                     <div className="space-y-2 text-left p-5">
                         <div className='flex justify-between'>
-                            <p className=''>{new Date(popular.date_and_time).toLocaleDateString()}</p>
-                            <p>${popular.camp_fees}</p>
+                            <p className='text-slate-400'>{new Date(popular.date_and_time).toLocaleDateString()}</p>
+                            <p className='text-slate-400'>${popular.camp_fees}</p>
                         </div>
 
                         <h2 className="text-2xl">{popular.camp_name}</h2>
                         <div className='flex items-center space-x-3'>
-                            <FaUserDoctor />
-                            <p className=''>{popular.healthcare_professional}</p>
+                            <FaUserDoctor className='text-[#0a4b46]' />
+                            <p className='text-slate-400'>{popular.healthcare_professional}</p>
                         </div>
 
                         <p className='flex items-center space-x-3'>
-                            <FaLocationArrow />
-                            <span>{popular.location}</span>
+                            <FaLocationArrow className='text-[#0a4b46]' />
+                            <span className='text-slate-400'>{popular.location}</span>
                         </p>
                         <div className='flex items-center space-x-3'>
-                            <FaUserCheck />
-                            <p className='space-x-2'>
-                                <span>participant count:</span>
-                                <span>{popular.participant_count}</span>
+                            <FaUserCheck className='text-[#0a4b46]' />
+                            <p  className='space-x-2'>
+                                <span className='text-slate-400'>participant count:</span>
+                                <span className='text-slate-400'>{popular.participant_count}</span>
                             </p>
                         </div>
                         <Link to={`/view-detail/${popular._id}`}>

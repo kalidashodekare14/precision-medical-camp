@@ -5,11 +5,14 @@ import useAuth from '../../../Hooks/useAuth';
 import { MdCancel } from 'react-icons/md';
 import { FaCheck, FaCheckCircle } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import usePagination from '../../../Hooks/usePagination';
+import { Pagination } from '@mui/material';
 
 const ManageRegisteredCams = () => {
 
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
+    const itemsPerPage = 10;
 
     const { data: manageCamps = [], refetch } = useQuery({
         queryKey: ['regisCamp', user.email],
@@ -21,18 +24,36 @@ const ManageRegisteredCams = () => {
     })
 
 
+    const {
+        currentPage,
+        totalPages,
+        startIndex,
+        endIndex,
+        nextPage,
+        prevPage,
+        setPage
+    } = usePagination(manageCamps.length, itemsPerPage)
+
+    const currentItems = manageCamps.slice(startIndex, endIndex + 1)
+
+    const handleChange = (event, value) => {
+        setPage(value)
+    }
+
+
+
     const handleConfirmStatus = async (manageCamp) => {
         console.log(manageCamp._id)
         const res = await axiosSecure.patch(`/register-camp/${manageCamp._id}`)
         console.log(res.data)
-        if(res.data.modifiedCount > 0){
+        if (res.data.modifiedCount > 0) {
             const res = await axiosSecure.patch(`/payment-history/${manageCamp._id}`)
             console.log(res.data)
         }
         refetch()
     }
 
-    
+
 
     const handleCancel = async (manageCamp) => {
         Swal.fire({
@@ -47,7 +68,7 @@ const ManageRegisteredCams = () => {
             if (result.isConfirmed) {
                 const res = await axiosSecure.delete(`/register-camp/${manageCamp._id}`)
                 console.log(res.data)
-                if(res.data.deletedCount > 0){
+                if (res.data.deletedCount > 0) {
                     Swal.fire({
                         title: "Deleted!",
                         text: "Your Registred Camp has been Deleted",
@@ -55,7 +76,7 @@ const ManageRegisteredCams = () => {
                     });
                 }
                 refetch()
-               
+
             }
         });
 
@@ -83,7 +104,7 @@ const ManageRegisteredCams = () => {
                     </thead>
                     <tbody>
                         {
-                            manageCamps.map((manageCamp, index) => <tr key={manageCamp._id}>
+                            currentItems.map((manageCamp, index) => <tr key={manageCamp._id}>
                                 <th>{index + 1}</th>
                                 <td>{manageCamp.participant_name}</td>
                                 <td>{manageCamp.camp_name}</td>
@@ -112,10 +133,17 @@ const ManageRegisteredCams = () => {
 
                             </tr>)
                         }
-
-
                     </tbody>
                 </table>
+                <div className='flex justify-center items-center my-10'>
+                    <Pagination
+                        count={totalPages}
+                        page={currentPage}
+                        onChange={handleChange}
+                        variant="outlined"
+                        siblingCount={0}
+                        color="primary" />
+                </div>
             </div>
         </div>
     );

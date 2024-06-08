@@ -75,7 +75,7 @@ const ViewDetail = () => {
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row">
                 <div className='w-[50%]'>
-                    <img src={details.image} />
+                    <img className='w-full' src={details.image} />
                 </div>
                 <div className='space-y-3'>
                     <h1 className="text-5xl font-bold">{details.camp_name}</h1>

@@ -8,6 +8,7 @@ import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import { RiLayoutVerticalFill } from 'react-icons/ri';
 import { LuLayoutGrid } from 'react-icons/lu';
+import { FaUserCheck } from 'react-icons/fa';
 
 const AvailableCamps = () => {
 
@@ -38,7 +39,7 @@ const AvailableCamps = () => {
         setAvailable([...sort])
     }
 
-    const handleCollumn = () =>{
+    const handleCollumn = () => {
         setTowCollumn(prevState => !prevState)
     }
 
@@ -60,11 +61,11 @@ const AvailableCamps = () => {
                 <div onClick={handleCollumn}>
                     {
                         towCollumn ? <RiLayoutVerticalFill className='text-4xl' />
-                        :
-                        <LuLayoutGrid className='text-4xl' />
+                            :
+                            <LuLayoutGrid className='text-4xl' />
                     }
-                    
-                    
+
+
                 </div>
             </div>
             <div className={`my-20 mx-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${towCollumn ? '3' : '2'} gap-5`}>
@@ -73,25 +74,26 @@ const AvailableCamps = () => {
                         <figure><img className='h-[40vh] w-full' src={popular.image} alt="Shoes" /></figure>
                         <div className="space-y-2 text-left p-5">
                             <div className='flex justify-between'>
-                                <p className=''>{new Date(popular.date_and_time).toLocaleDateString()}</p>
-                                <p>{popular.camp_fees}</p>
+                                <p className='text-slate-400'>{new Date(popular.date_and_time).toLocaleDateString()}</p>
+                                <p className='text-slate-400'>${popular.camp_fees}</p>
                             </div>
 
                             <h2 className="text-2xl">{popular.camp_name}</h2>
                             <div className='flex items-center space-x-3'>
-                                <FaUserDoctor />
-                                <p className=''>{popular.healthcare_professional}</p>
+                                <FaUserDoctor className='text-[#0a4b46]' />
+                                <p className='text-slate-400'>{popular.healthcare_professional}</p>
                             </div>
 
                             <p className='flex items-center space-x-3'>
-                                <FaLocationArrow />
-                                <span>{popular.location}</span>
+                                <FaLocationArrow className='text-[#0a4b46]' />
+                                <span className='text-slate-400'>{popular.location}</span>
                             </p>
-                            <p className='space-x-2'>
+                            <p className='space-x-3 text-slate-400 flex items-center'>
+                                <FaUserCheck className='text-[#0a4b46]' />
                                 <span>participant count:</span>
-                                <span>{popular.participant_count}</span>
+                                <span className='text-slate-400'>{popular.participant_count}</span>
                             </p>
-                            <p>{popular.description}</p>
+                            <p className='text-slate-400'>{popular.description}</p>
                             <Link to={`/available-detail/${popular._id}`}>
                                 <button className='btn bg-opacity-0 border-[#29c178] hover:bg-[#29c178]'>View Detail</button>
                             </Link>

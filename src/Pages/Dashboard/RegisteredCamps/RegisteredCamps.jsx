@@ -8,6 +8,9 @@ import '@smastrom/react-rating/style.css'
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import userPagination from '../../../Hooks/usePagination';
+import usePagination from '../../../Hooks/usePagination';
+import Pagination from '@mui/material/Pagination';
 
 
 const RegisteredCamps = () => {
@@ -15,7 +18,7 @@ const RegisteredCamps = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
     const [rating, setRating] = useState(0)
-
+    const itemsPerPage = 10
 
     const { data: regisCamps = [], refetch } = useQuery({
         queryKey: ['regisCamp', user.email],
@@ -25,6 +28,22 @@ const RegisteredCamps = () => {
 
         }
     })
+
+    const {
+        currentPage,
+        totalPages,
+        startIndex,
+        endIndex,
+        nextPage,
+        prevPage,
+        setPage
+    } = usePagination(regisCamps.length, itemsPerPage)
+
+    const currentItems = regisCamps.slice(startIndex, endIndex + 1)
+
+    const handleChange = (event, value) => {
+        setPage(value)
+    }
 
 
     console.log(regisCamps)
@@ -98,7 +117,7 @@ const RegisteredCamps = () => {
                     </thead>
                     <tbody>
                         {
-                            regisCamps.map((regiscamp, index) => <tr key={regiscamp._id}>
+                            currentItems.map((regiscamp, index) => <tr key={regiscamp._id}>
                                 <th>{index + 1}</th>
                                 <td>{regiscamp.camp_name}</td>
                                 <td>${regiscamp.camp_fees}</td>
@@ -145,6 +164,15 @@ const RegisteredCamps = () => {
 
                     </tbody>
                 </table>
+                <div className='flex justify-center items-center my-10'>
+                    <Pagination
+                        count={totalPages}
+                        page={currentPage}
+                        onChange={handleChange}
+                        variant="outlined"
+                        siblingCount={0}
+                        color="primary" />
+                </div>
             </div>
         </div>
     );

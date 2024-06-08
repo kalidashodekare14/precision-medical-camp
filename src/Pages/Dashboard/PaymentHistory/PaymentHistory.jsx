@@ -2,19 +2,38 @@ import React from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import usePagination from '@mui/material/usePagination/usePagination';
 
 const PaymentHistory = () => {
 
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
+    const itemsPerPage = 10
 
-    const { data: historyInfo  = []} = useQuery({
+    const { data: historyInfo = [] } = useQuery({
         queryKey: ['historyInfo', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/payment-history/${user?.email}`)
             return res.data
         }
     })
+
+
+    const {
+        currentPage,
+        totalPages,
+        startIndex,
+        endIndex,
+        nextPage,
+        prevPage,
+        setPage
+    } = usePagination(historyInfo.length, itemsPerPage)
+
+    const currentItems = historyInfo.slice(startIndex, endIndex + 1)
+
+    const handleChange = (event, value) => {
+        setPage(value)
+    }
 
     console.log(historyInfo)
 
@@ -36,7 +55,7 @@ const PaymentHistory = () => {
                     </thead>
                     <tbody>
                         {
-                            historyInfo.map((item, index) => (
+                            currentItems.map((item, index) => (
                                 <tr key={item._id}>
                                     <th>{index + 1}</th>
                                     <td>{item.transactions_id}</td>
@@ -47,8 +66,6 @@ const PaymentHistory = () => {
                                 </tr>
                             ))
                         }
-
-
 
                     </tbody>
                 </table>

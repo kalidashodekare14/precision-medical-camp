@@ -21,7 +21,7 @@ const OrgainzerProfile = () => {
     const axiosSecure = useAxiosSecure()
     const axiosPublic = useAxiosPublic()
 
-    const { data: profile = {} } = useQuery({
+    const { data: profile = {}, refetch } = useQuery({
         queryKey: ['profile', user?.email],
         enabled: !!user?.email,
         queryFn: async () => {
@@ -29,6 +29,8 @@ const OrgainzerProfile = () => {
             return res.data[0]
         }
     })
+
+    console.log(profile)
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = async (data) => {
@@ -46,10 +48,10 @@ const OrgainzerProfile = () => {
             phone_number: data.phone_number,
             image: res.data.data.display_url
         }
-        const result = axiosPublic.put(`/profile-update/${profile._id}`, updateProfile)
+        const result = await axiosPublic.put(`/profile-update/${profile._id}`, updateProfile)
         console.log(result.data)
+        refetch()
     }
-
 
 
     return (
@@ -73,8 +75,8 @@ const OrgainzerProfile = () => {
                                 <div className="my-10 space-y-3">
                                     <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
                                         <div className="flex flex-col lg:flex-row items-center space-x-2">
-                                            <input {...register("name")} defaultValue={profile.name} className="input w-full border-b-[#32c45e] rounded-none" type="text" />
-                                            <input {...register("email")} defaultValue={profile.email} className="input w-full border-b-[#32c45e] rounded-none" type="text" />
+                                            <input  {...register("name")} defaultValue={profile.name} className="input w-full border-b-[#32c45e] rounded-none" type="text" />
+                                            <input  {...register("email")} defaultValue={profile.email} className="input w-full border-b-[#32c45e] rounded-none" type="text" />
                                         </div>
                                         <div className="flex w-full flex-col lg:flex-row items-center space-x-2">
                                             <input {...register("address")} defaultValue={profile.address} placeholder="Your Address" className="input w-full  border-b-[#32c45e] rounded-none" type="text" />
@@ -110,19 +112,19 @@ const OrgainzerProfile = () => {
                             <div className="flex p-2 border-b space-x-2 border-b-[#32c45e] items-center">
                                 <IoLocation className="text-xl" />
                                 {
-                                    profile.address ?  <h1>{profile.address}</h1> 
-                                    : 'Update Your Address'
+                                    profile.address ? <h1>{profile.address}</h1>
+                                        : 'Update Your Address'
                                 }
                             </div>
                             <div className="flex p-2 border-b space-x-2 border-b-[#32c45e] items-center">
                                 <FaPhoneAlt className="text-xl" />
                                 {
-                                    profile.phone_number ?  <h1>{profile.phone_number}</h1>
-                                    : 'Update Your Phone Number'
+                                    profile.phone_number ? <h1>{profile.phone_number}</h1>
+                                        : 'Update Your Phone Number'
                                 }
                             </div>
                         </div>
-                        
+
                     </div>
                 </form>
             </div>
