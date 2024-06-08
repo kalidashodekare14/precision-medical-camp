@@ -96,7 +96,7 @@ const ManageCamps = () => {
 
 
     return (
-        <div className='min-h-screen space-y-10 flex flex-col my-10 items-center'>
+        <div className='min-h-screen  space-y-10 flex flex-col my-10 items-center'>
             <div>
                 <h1 className='text-center text-4xl'>Manage Camps</h1>
             </div>
@@ -104,13 +104,13 @@ const ManageCamps = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-base-200">
+                        <tr className="bg-[#32c45e]  text-[#000000] text-[14px]">
                             <th></th>
-                            <th>Name</th>
-                            <th>Healthcare Professional</th>
-                            <th>Location</th>
-                            <th>Date & Time</th>
-                            <th>Action</th>
+                            <th className='font-semibold'>Name</th>
+                            <th className='font-semibold'>Healthcare Professional</th>
+                            <th className='font-semibold'>Location</th>
+                            <th className='font-semibold'>Date & Time</th>
+                            <th className='font-semibold'>Action</th>
                         </tr>
                     </thead>
                     <tbody>

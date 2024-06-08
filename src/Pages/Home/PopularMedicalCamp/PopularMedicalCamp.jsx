@@ -1,7 +1,7 @@
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 
-import { FaLocationArrow } from 'react-icons/fa';
+import { FaLocationArrow, FaUserCheck } from 'react-icons/fa';
 import { FaUserDoctor } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import usePopularCamp from '../../../Hooks/usePopularCamp';
@@ -30,12 +30,12 @@ const PopularMedicalCamp = () => {
                     <div className="space-y-2 text-left p-5">
                         <div className='flex justify-between'>
                             <p className=''>{new Date(popular.date_and_time).toLocaleDateString()}</p>
-                            <p>{popular.camp_fees}</p>
+                            <p>${popular.camp_fees}</p>
                         </div>
 
                         <h2 className="text-2xl">{popular.camp_name}</h2>
                         <div className='flex items-center space-x-3'>
-                        <FaUserDoctor />
+                            <FaUserDoctor />
                             <p className=''>{popular.healthcare_professional}</p>
                         </div>
 
@@ -43,12 +43,15 @@ const PopularMedicalCamp = () => {
                             <FaLocationArrow />
                             <span>{popular.location}</span>
                         </p>
-                        <p className='space-x-2'>
-                            <span>participant count:</span>
-                            <span>{popular.participant_count}</span>
-                        </p>
+                        <div className='flex items-center space-x-3'>
+                            <FaUserCheck />
+                            <p className='space-x-2'>
+                                <span>participant count:</span>
+                                <span>{popular.participant_count}</span>
+                            </p>
+                        </div>
                         <Link to={`/view-detail/${popular._id}`}>
-                            <button className='btn bg-opacity-0 border-[#29c178] hover:bg-[#29c178]'>View Detail</button>
+                            <button className='btn mt-3 bg-opacity-0 border-[#29c178] hover:bg-[#29c178]'>View Detail</button>
                         </Link>
                     </div>
                 </div>)

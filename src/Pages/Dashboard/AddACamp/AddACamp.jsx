@@ -64,20 +64,20 @@ const AddACamp = () => {
     return (
         <div className='flex  justify-center items-center min-h-screen'>
 
-            <div className='border p-20 space-y-5 w-2/3'>
+            <div className='border lg:p-20 p-3 space-y-5 lg:w-2/3 lg:mx-3 bg-[#d6d6d6]'>
                 <h1 className='text-center font-bold text-4xl'>Add a Camp</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className='flex items-center space-x-3'>
+                    <div className='flex flex-col lg:flex-row items-center lg:space-x-3'>
                         <div className='flex flex-col w-full'>
                             <label htmlFor="">Camp Name</label>
                             <input {...register("camp_name")} className=' input input-bordered' type="text" />
                         </div>
-                        <div className='w-full flex flex-col'>
+                        <div className='w-full flex  flex-col'>
                             <label htmlFor=""> Healthcare Professional Name</label>
                             <input {...register("healthcare_professional")} className='input input-bordered' type="text" />
                         </div>
                     </div>
-                    <div className='mt-3 w-full space-x-3 flex items-center'>
+                    <div className='mt-3 w-full lg:space-x-3 flex flex-col lg:flex-row items-center'>
                         <div className='w-full flex flex-col'>
                             <label htmlFor="">Add Image</label>
                             <input {...register("image")} type="file" className="w-full file-input file-input-bordered " />
@@ -87,7 +87,7 @@ const AddACamp = () => {
                             <DatePicker className='w-full input input-bordered' selected={startDate} onChange={(date) => setStartDate(date)} />
                         </div>
                     </div>
-                    <div className='flex items-center space-x-3'>
+                    <div className='flex flex-col lg:flex-row items-center lg:space-x-3'>
                         <div className='mt-3 w-full flex flex-col'>
                             <label htmlFor="">Location</label>
                             <input {...register("location")} className=' input input-bordered' type="text" />

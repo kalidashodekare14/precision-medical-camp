@@ -14,7 +14,7 @@ const DashBoard = () => {
 
     return (
         <div className='flex flex-col lg:flex-row'>
-            <div className='lg:w-[20%] border lg:min-h-screen'>
+            <div className='lg:w-[20%] w-full border lg:min-h-screen'>
                 <ul className='menu'>
                     {
                         isOranizer ? <>

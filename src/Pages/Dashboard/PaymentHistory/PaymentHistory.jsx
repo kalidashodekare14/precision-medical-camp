@@ -25,13 +25,13 @@ const PaymentHistory = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-base-200">
+                        <tr className="bg-[#32c45e]  text-[#000000] text-[14px]">
                             <th></th>
-                            <th>Transactions</th>
-                            <th>Camp Name</th>
-                            <th>Camp Fees</th>
-                            <th>Payment Status</th>
-                            <th>Confirmation Status</th>
+                            <th className='font-semibold'>Transactions</th>
+                            <th className='font-semibold'>Camp Name</th>
+                            <th className='font-semibold'>Camp Fees</th>
+                            <th className='font-semibold'>Payment Status</th>
+                            <th className='font-semibold'>Confirmation Status</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -24,15 +24,16 @@ const SignUp = () => {
                 userUpdateSystem(data.name, data.PhotoURL)
                     .then(res => {
                         const userInfo = {
-                            name: data.name,
-                            email: data.email
+                            name: data?.name,
+                            email: data?.email,
+                            image: data?.PhotoURL
                         }
                         axiosSecure.post('/users', userInfo)
-                        .then(res =>{
-                            if(res.data.insertedId){
-                                console.log('user add for database')
-                            }
-                        })
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    console.log('user add for database')
+                                }
+                            })
                         console.log(res.user)
                     })
                     .catch(error => {
@@ -46,32 +47,34 @@ const SignUp = () => {
             })
     }
 
-    const handleGoogle = () =>{
+    const handleGoogle = () => {
         googleLoginSystem()
-        .then(res =>{
-            console.log(res.user)
-            const userInfo = {
-                name: res?.user?.displayName,
-                email: res?.user?.email 
-            }
-            axiosPublic.post('/users', userInfo)
-            .then(res =>{
-                console.log(res.data)
+            .then(res => {
+                console.log(res.user)
+                const userInfo = {
+                    name: res?.user?.displayName,
+                    email: res?.user?.email,
+                    image: res?.user?.photoURL
+                }
+                console.log(userInfo)
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        console.log(res.data)
+                    })
+                    .catch(error => {
+                        console.log(error.message)
+                    })
+                navigate('/')
             })
-            .catch(error =>{
+            .catch(error => {
                 console.log(error.message)
             })
-            navigate('/')
-        })
-        .catch(error =>{
-            console.log(error.message)
-        })
     }
 
 
     return (
         <div className='signUpBackground bg-no-repeat bg-cover bg-center flex flex-row-reverse  justify-start items-center min-h-screen'>
-            <div className='text-white w-[40%] mx-20 border-2 border-yellow-500 p-10 '>
+            <div className='text-white bg-[#00000076] lg:w-[40%] lg:mx-20 border-2 border-yellow-500 w-full mx-3 p-2'>
                 <form onSubmit={handleSubmit(onSubmit)} className='space-y-3'>
                     <div className='flex flex-col w-full'>
                         <label htmlFor="">Name</label>
@@ -90,8 +93,8 @@ const SignUp = () => {
                     </div>
                     <div className='flex flex-col w-full'>
                         <label htmlFor="">Password</label>
-                        <input {...register("password", { required: true })} placeholder='Enter Your Password' type="password" className="text-black w-full input input-bordered" />
-                        {errors.password && <span className='text-red-500'>This field is required</span>}
+                        <input {...register("password", { required: true, minLength: 6, pattern: /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/ })} placeholder='Enter Your Password' type="password" className="text-black w-full input input-bordered" />
+                        {errors.password && <span className='text-red-500'>Password must  uppercase, lowercase and any number</span>}
                     </div>
                     <div className='text-center'>
                         <input className='btn w-52' type="submit" value="Sign Up" />

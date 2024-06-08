@@ -71,14 +71,14 @@ const ManageRegisteredCams = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-base-200">
+                        <tr className="bg-[#32c45e]  text-[#000000] text-[14px]">
                             <th></th>
-                            <th>Participant Name</th>
-                            <th>Camp name</th>
-                            <th>Camp Fees</th>
-                            <th>Payment Status</th>
-                            <th>Confirmation Status</th>
-                            <th>Cancel</th>
+                            <th className='font-semibold'>Participant Name</th>
+                            <th className='font-semibold'>Camp name</th>
+                            <th className='font-semibold'>Camp Fees</th>
+                            <th className='font-semibold'>Payment Status</th>
+                            <th className='font-semibold'>Confirmation Status</th>
+                            <th className='font-semibold'>Cancel</th>
                         </tr>
                     </thead>
                     <tbody>
