@@ -10,17 +10,7 @@ const PopularMedicalCamp = () => {
 
     const [populars] = usePopularCamp()
 
-    // const axiosPublic = useAxiosPublic()
-
-    // const { data: populars = [] } = useQuery({
-    //     queryKey: ['popular'],
-    //     queryFn: async () => {
-    //         const res = await axiosPublic.get('/popular-medical-camp')
-    //         return res.data
-    //     }
-    // })
-
-
+    
 
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
@@ -35,16 +25,16 @@ const PopularMedicalCamp = () => {
 
                         <h2 className="text-2xl">{popular.camp_name}</h2>
                         <div className='flex items-center space-x-3'>
-                            <FaUserDoctor className='text-[#0a4b46]' />
+                            <FaUserDoctor className='text-[#081839]' />
                             <p className='text-slate-400'>{popular.healthcare_professional}</p>
                         </div>
 
                         <p className='flex items-center space-x-3'>
-                            <FaLocationArrow className='text-[#0a4b46]' />
+                            <FaLocationArrow className='text-[#081839]' />
                             <span className='text-slate-400'>{popular.location}</span>
                         </p>
                         <div className='flex items-center space-x-3'>
-                            <FaUserCheck className='text-[#0a4b46]' />
+                            <FaUserCheck className='text-[#081839]' />
                             <p  className='space-x-2'>
                                 <span className='text-slate-400'>participant count:</span>
                                 <span className='text-slate-400'>{popular.participant_count}</span>

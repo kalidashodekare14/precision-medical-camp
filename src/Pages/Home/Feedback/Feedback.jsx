@@ -46,7 +46,7 @@ const Feedback = () => {
                                 <img className='w-20 h-[12vh] rounded-full' src={feedback.image} alt="" />
                             </div>
                             <h2>{feedback.feedback}</h2>
-                            <h3 className='text-[20px] font-bold'>{feedback.name}</h3>
+                            <h3 className='text-[20px] text-[#081839] font-bold'>{feedback.name}</h3>
                         </div>
                     </SwiperSlide>
                 ))
