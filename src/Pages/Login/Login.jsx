@@ -12,6 +12,7 @@ const Login = () => {
 
     const { loginSystem } = useAuth()
     const navigate = useNavigate()
+    const from = location.state?.from?.pathname || "/"
     const {
         register,
         handleSubmit,
@@ -24,7 +25,7 @@ const Login = () => {
             .then(res => {
                 console.log(res.user)
                 toast.success("Wow so easy !");
-                navigate('/')
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 console.log(error.message)

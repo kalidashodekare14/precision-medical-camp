@@ -3,11 +3,12 @@ import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 import userImage from '../../../assets/userImage.png'
 import logo from '/logo.png'
+import useOrganizer from '../../../Hooks/useOrganizer';
 
 const Navbar = () => {
 
     const { user, logOutSystem } = useAuth()
-
+    const [isOranizer] = useOrganizer()
 
     const links = <>
         <li>
@@ -79,7 +80,7 @@ const Navbar = () => {
                                     <span className='text-black'>{user.displayName}</span>
                                 </a>
                             </li>
-                            <li><Link to="/dashboard/organizer-profile" className='text-black'>Dashboard</Link></li>
+                            <li><Link to={`${isOranizer ? '/dashboard/organizer-profile' : '/dashboard/participant-profile'}`} className='text-black'>Dashboard</Link></li>
                             <li><span onClick={handleLogOut} className='text-black'>Logout</span></li>
                         </ul>
                     </div>

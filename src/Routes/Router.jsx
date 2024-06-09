@@ -18,6 +18,7 @@ import ParticipantProfile from "../Pages/Dashboard/ParticipantProfile/Participan
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import ManageUpdate from "../Pages/Dashboard/ManageUpdate/ManageUpdate";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import OrganizerRoutes from "../PrivateRoutes/OrganizerRoutes";
 
 const router = createBrowserRouter([
     {
@@ -62,42 +63,42 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/add-a-camp',
-                element: <AddACamp></AddACamp>
+                element: <OrganizerRoutes><AddACamp></AddACamp></OrganizerRoutes>
             },
             {
                 path: '/dashboard/manage-camps',
-                element: <ManageCamps></ManageCamps>
+                element: <OrganizerRoutes><ManageCamps></ManageCamps></OrganizerRoutes>
             },
             {
                 path: '/dashboard/manage-update/:id',
-                element: <ManageUpdate></ManageUpdate>,
+                element: <OrganizerRoutes><ManageUpdate></ManageUpdate></OrganizerRoutes>,
                 loader: ({params}) => fetch(`http://localhost:5000/popular-medical-camp/${params.id}`)
             },
             {
                 path: '/dashboard/manage-registered-camps',
-                element: <ManageRegisteredCams></ManageRegisteredCams>
+                element: <OrganizerRoutes><ManageRegisteredCams></ManageRegisteredCams></OrganizerRoutes>
             },
             
             // user routes
             {
                 path: '/dashboard/analytics',
-                element: <Analytics></Analytics>
+                element: <PrivateRoute><Analytics></Analytics></PrivateRoute>
             },
             {
                 path: '/dashboard/participant-profile',
-                element: <ParticipantProfile></ParticipantProfile>
+                element: <PrivateRoute><ParticipantProfile></ParticipantProfile></PrivateRoute>
             },
             {
                 path: '/dashboard/registered-camps',
-                element: <RegisteredCamps></RegisteredCamps>
+                element: <PrivateRoute><RegisteredCamps></RegisteredCamps></PrivateRoute>
             },
             {
                 path: '/dashboard/payment-history',
-                element: <PaymentHistory></PaymentHistory>
+                element: <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
             },
             {
                 path: '/dashboard/payment/:id',
-                element: <Payment></Payment>,
+                element: <PrivateRoute><Payment></Payment></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/camp-register/${params.id}`)
             }
             
