@@ -17,6 +17,7 @@ const AvailableCamps = () => {
     const [available, setAvailable] = useState([])
     const [search, setSearch] = useState([])
     const [towCollumn, setTowCollumn] = useState(true)
+    const [searchQuery, setSearchQuery] = useState('')
 
     const { } = useQuery({
         queryKey: ['popular'],

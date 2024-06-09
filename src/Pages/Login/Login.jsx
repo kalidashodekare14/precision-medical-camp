@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import login from '../../assets/login.jpg'
-
+import google from '../../assets/google.png'
 import './Login.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
 
-    const { loginSystem } = useAuth()
+    const { loginSystem, googleLoginSystem } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
     const [error, setError] = useState('')
@@ -34,7 +34,7 @@ const Login = () => {
                     title: "Your Loggin Successfully",
                     showConfirmButton: false,
                     timer: 1500
-                }).then(()=>{
+                }).then(() => {
                     navigate(from, { replace: true })
                 })
                 setError('')
@@ -47,6 +47,16 @@ const Login = () => {
             })
     }
 
+    const handleGoogle = () => {
+        googleLoginSystem()
+        .then(res =>{
+            console.log(res.user)
+            navigate(from, { replace: true })
+        })
+        .catch(error =>{
+            console.log(error.message)
+        })
+    }
 
     return (
         <div className='loginBackground bg-no-repeat bg-cover bg-center ps-6 flex flex-row-reverse  justify-end items-center min-h-screen'>
@@ -63,9 +73,14 @@ const Login = () => {
                         {errors.email && <span className='text-red-500'>This field is required</span>}
                     </div>
                     <div className='text-center'>
-                        <input className='btn w-32' type="submit" value="Login" />
+                        <input className='btn w-52' type="submit" value="Login" />
                     </div>
                 </form>
+                <div className='text-center my-5'>
+                    <button onClick={handleGoogle} className='btn w-32'>
+                        <img className='w-10' src={google} alt="" />
+                    </button>
+                </div>
                 <div className='flex flex-col'>
                     <span className='text-red-500'>{error}</span>
                     <span>Don’t have an account yet? <Link to="/sign-up" className='text-green-500'>Sign up</Link></span>
