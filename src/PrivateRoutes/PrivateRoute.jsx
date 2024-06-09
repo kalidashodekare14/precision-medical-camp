@@ -5,6 +5,7 @@ const PrivateRoute = ({ children }) => {
 
     const { user, loading } = useAuth()
     const location = useLocation()
+    console.log(location)
     if (loading) {
         return <div className="flex justify-center items-center min-h-screen"><span className="loading loading-infinity loading-lg"></span></div>
     }

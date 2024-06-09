@@ -76,9 +76,9 @@ const Navbar = () => {
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <li>
-                                <a className="justify-between">
-                                    <span className='text-black'>{user.displayName}</span>
-                                </a>
+                                <p className="justify-between active:bg-opacity-0">
+                                    <span className='disabled text-black'>{user.displayName}</span>
+                                </p>
                             </li>
                             <li><Link to={`${isOranizer ? '/dashboard/organizer-profile' : '/dashboard/participant-profile'}`} className='text-black'>Dashboard</Link></li>
                             <li><span onClick={handleLogOut} className='text-black'>Logout</span></li>

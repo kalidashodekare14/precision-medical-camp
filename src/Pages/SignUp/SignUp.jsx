@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import google from '../../assets/google.png'
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
     const { signUpSystem, userUpdateSystem, googleLoginSystem } = useAuth()
@@ -32,6 +33,15 @@ const SignUp = () => {
                             .then(res => {
                                 if (res.data.insertedId) {
                                     console.log('user add for database')
+                                    Swal.fire({
+                                        position: "center",
+                                        icon: "success",
+                                        title: "Your Register Successfully",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    }).then(() => {
+                                        navigate('/')
+                                    })
                                 }
                             })
                         console.log(res.user)
@@ -39,8 +49,7 @@ const SignUp = () => {
                     .catch(error => {
                         console.log(error.message)
                     })
-                toast("Your Register Successfuly")
-                navigate('/')
+
             })
             .catch(error => {
                 console.log(error.message)
