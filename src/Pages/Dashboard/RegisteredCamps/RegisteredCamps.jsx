@@ -71,19 +71,18 @@ const RegisteredCamps = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                const res = axiosSecure.delete(`/register-camp/${regiscamp._id}`)
+                const res = await axiosSecure.delete(`/register-camp/${regiscamp._id}`)
                 console.log(res.data)
                 if (res.data.deletedCount > 0) {
                     Swal.fire({
                         title: "Deleted!",
-                        text: "Your file has been deleted.",
+                        text: "Your Camp has been deleted.",
                         icon: "success"
                     });
                 }
                 refetch()
-
             }
         });
     }
@@ -102,8 +101,10 @@ const RegisteredCamps = () => {
         console.log(res.data)
         if (res.data.insertedId) {
             console.log('successfuly')
-            toast("Wow so easy !")
+            toast.success("Your Feedback Successfuly");
+            from.reset()
         }
+        
     }
 
 

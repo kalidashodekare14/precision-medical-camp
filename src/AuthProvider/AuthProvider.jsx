@@ -66,7 +66,7 @@ const AuthProvider = ({ children }) => {
         }
     }, [axiosPublic, user])
 
-    const infoLogged = { user, loading, signUpSystem, loginSystem, userUpdateSystem, logOutSystem, googleLoginSystem }
+    const infoLogged = { user, loading, setLoading, signUpSystem, loginSystem, userUpdateSystem, logOutSystem, googleLoginSystem }
 
     return (
         <authContext.Provider value={infoLogged}>

@@ -9,6 +9,8 @@ import { MdEmail } from 'react-icons/md';
 import { IoLocation } from 'react-icons/io5';
 import { CiEdit } from 'react-icons/ci';
 import Swal from 'sweetalert2';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -53,14 +55,9 @@ const ParticipantProfile = () => {
             console.log(res.user)
             userUpdateSystem(data.name, res.data.data.display_url)
                 .then(res => {
-                    console.log('update Done', res.data)
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Your information update successfuly",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                    console.log('update Done', res.user)
+                    toast.success("Your Profile Update Successfuly")
+                    
                 })
                 .catch(error => {
                     console.log(error.message)
@@ -111,6 +108,7 @@ const ParticipantProfile = () => {
                                 </div>
                             </div>
                         </div>
+                        <ToastContainer />
                     </div>
                 </dialog>
                 <form className="flex  flex-col justify-center items-center">
