@@ -32,7 +32,7 @@ const router = createBrowserRouter([
             {
                 path: '/view-detail/:id',
                 element: <PrivateRoute><ViewDetail></ViewDetail></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/popular-detail/${params.id}`)
+                loader: ({ params }) => fetch(`https://precision-medical-camp-server.vercel.app/popular-detail/${params.id}`)
             },
             {
                 path: 'available-camps',
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
             {
                 path: '/available-detail/:id',
                 element: <PrivateRoute><AvailableDetail></AvailableDetail></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/popular-detail/${params.id}`)
+                loader: ({ params }) => fetch(`https://precision-medical-camp-server.vercel.app/popular-detail/${params.id}`)
             },
             {
                 path: 'login',
@@ -72,7 +72,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/manage-update/:id',
                 element: <OrganizerRoutes><ManageUpdate></ManageUpdate></OrganizerRoutes>,
-                loader: ({params}) => fetch(`http://localhost:5000/popular-medical-camp/${params.id}`)
+                loader: ({params}) => fetch(`https://precision-medical-camp-server.vercel.app/popular-medical-camp/${params.id}`)
             },
             {
                 path: '/dashboard/manage-registered-camps',
@@ -99,7 +99,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <PrivateRoute><Payment></Payment></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/camp-register/${params.id}`)
+                loader: ({params}) => fetch(`https://precision-medical-camp-server.vercel.app/camp-register/${params.id}`)
             }
             
             

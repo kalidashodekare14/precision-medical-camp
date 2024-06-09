@@ -3,7 +3,7 @@ import useOrganizer from '../Hooks/useOrganizer';
 import useAuth from '../Hooks/useAuth';
 import { Navigate, useLocation } from 'react-router-dom';
 
-const OrganizerRoutes = () => {
+const OrganizerRoutes = ({children}) => {
     const { user, loading } = useAuth()
     const [isOranizer, isOranizerLoading] = useOrganizer()
     const location = useLocation()
@@ -18,5 +18,6 @@ const OrganizerRoutes = () => {
 
     return <Navigate to="/login" state={{ from: location }} replace></Navigate>
 };
+
 
 export default OrganizerRoutes;
