@@ -49,7 +49,7 @@ const Login = () => {
                     <input className='btn w-32' type="submit" value="Login" />
                 </form>
                 <span>Don’t have an account yet? <Link to="/sign-up" className='text-green-500'>Sign up</Link></span>
-                <ToastContainer />
+                
             </div>
         </div>
     );

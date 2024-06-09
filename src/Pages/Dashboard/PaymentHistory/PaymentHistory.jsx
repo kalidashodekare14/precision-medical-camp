@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
@@ -9,6 +9,7 @@ const PaymentHistory = () => {
 
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
+    const [searchQuery, setSearchQuery] = useState('')
     const itemsPerPage = 10
 
     const { data: historyInfo = [] } = useQuery({
@@ -21,6 +22,23 @@ const PaymentHistory = () => {
 
     console.log(historyInfo)
 
+
+    const searchSystem = historyInfo.filter(camp => {
+        const query = searchQuery.toLowerCase()
+        return (
+            camp.camp_name?.toLowerCase().includes(query) ||
+            camp.participant_name?.toLowerCase().includes(query) ||
+            camp.camp_fees.toString().toLowerCase().includes(query) ||
+            camp.transactions_id.toLowerCase().includes(query) ||
+            camp.confirmation_status.toLowerCase().includes(query)
+
+
+        )
+    })
+
+
+
+
     const {
         currentPage,
         totalPages,
@@ -29,9 +47,9 @@ const PaymentHistory = () => {
         nextPage,
         prevPage,
         setPage
-    } = usePagination(historyInfo.length, itemsPerPage)
+    } = usePagination(searchSystem.length, itemsPerPage)
 
-    const currentItems = historyInfo.slice(startIndex, endIndex + 1)
+    const currentItems = searchSystem.slice(startIndex, endIndex + 1)
 
     const handleChange = (event, value) => {
         setPage(value)
@@ -43,6 +61,9 @@ const PaymentHistory = () => {
     return (
         <div>
             <h1 className='text-center text-4xl my-10'>Payment History</h1>
+            <div className='text-center my-10'>
+                <input onChange={(e) => setSearchQuery(e.target.value)} placeholder='Search' className='input input-bordered' type="text" />
+            </div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

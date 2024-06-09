@@ -39,8 +39,8 @@ const SignUp = () => {
                     .catch(error => {
                         console.log(error.message)
                     })
-                navigate('/')
                 toast("Your Register Successfuly")
+                navigate('/')
             })
             .catch(error => {
                 console.log(error.message)

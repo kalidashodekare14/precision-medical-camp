@@ -17,7 +17,7 @@ const RegisteredCamps = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
     const [rating, setRating] = useState(0)
-    const [searchSystem, setSearchSystem] = useState('')
+    const [searchQuery, setSearchQuery] = useState('')
     const itemsPerPage = 10
 
     const { data: regisCamps = [], refetch } = useQuery({
@@ -29,12 +29,18 @@ const RegisteredCamps = () => {
         }
     })
 
+    const searchSystem = regisCamps.filter(camp => {
+        const query = searchQuery.toLowerCase()
+        return (
+            camp.camp_name.toLowerCase().includes(query) ||
+            camp.healthcare_professional.toLowerCase().includes(query) ||
+            camp.payment_status.toLowerCase().includes(query) ||
+            camp.participant_name.toLowerCase().includes(query) ||
+            camp.camp_fees.toString().toLowerCase().includes(query) ||
+            camp.confirmmation_status.toLowerCase().includes(query)
 
-
-    // const searchCamp = camps.filter(camp =>{
-    //     const query = searchSystem.toLocaleLowerCase()
-
-    // })
+        )
+    })
 
 
 
@@ -46,9 +52,9 @@ const RegisteredCamps = () => {
         nextPage,
         prevPage,
         setPage
-    } = usePagination(regisCamps.length, itemsPerPage)
+    } = usePagination(searchSystem.length, itemsPerPage)
 
-    const currentItems = regisCamps.slice(startIndex, endIndex + 1)
+    const currentItems = searchSystem.slice(startIndex, endIndex + 1)
 
     const handleChange = (event, value) => {
         setPage(value)
@@ -108,7 +114,7 @@ const RegisteredCamps = () => {
             <div>
                 <h1 className='text-center text-4xl my-10'>Registered Camps</h1>
                 <div className='text-center my-10'>
-                    <input onChange={(e) => setSearchSystem(e.target.value)} placeholder='Search' className='input input-bordered' type="text" />
+                    <input onChange={(e) => setSearchQuery(e.target.value)} placeholder='Search' className='input input-bordered' type="text" />
                 </div>
             </div>
             <div className="overflow-x-auto">
