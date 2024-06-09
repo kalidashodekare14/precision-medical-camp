@@ -19,11 +19,13 @@ import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import ManageUpdate from "../Pages/Dashboard/ManageUpdate/ManageUpdate";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import OrganizerRoutes from "../PrivateRoutes/OrganizerRoutes";
+import ErrorPage from "../Layout/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Root></Root>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
