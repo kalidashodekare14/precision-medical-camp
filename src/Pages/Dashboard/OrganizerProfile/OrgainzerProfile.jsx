@@ -17,7 +17,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const OrgainzerProfile = () => {
 
-    const { user } = useAuth()
+    const { user, userUpdateSystem } = useAuth()
     const axiosSecure = useAxiosSecure()
     const axiosPublic = useAxiosPublic()
 
@@ -40,7 +40,7 @@ const OrgainzerProfile = () => {
                 'content-type': 'multipart/form-data'
             }
         })
-        console.log(res.data)
+
         const updateProfile = {
             name: data.name,
             email: data.email,
@@ -50,6 +50,15 @@ const OrgainzerProfile = () => {
         }
         const result = await axiosPublic.put(`/profile-update/${profile._id}`, updateProfile)
         console.log(result.data)
+        if (result.data.modifiedCount > 0) {
+            userUpdateSystem(data.name, res.data.data.display_url)
+                .then(res => {
+                    console.log('Update Done', res.user)
+                })
+                .catch(error => {
+                    console.log(error.message)
+                })
+        }
         refetch()
     }
 

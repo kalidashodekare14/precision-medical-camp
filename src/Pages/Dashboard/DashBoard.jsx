@@ -67,7 +67,7 @@ const DashBoard = () => {
                                 <li>
                                     <NavLink to="/dashboard/payment-history">
                                         <MdPayments className='text-2xl' />
-                                        PaymentHistory
+                                        Payment History
                                     </NavLink>
                                 </li>
                             </>

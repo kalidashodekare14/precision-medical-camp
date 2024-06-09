@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, updateProfile, updateEmail } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import auth from '../Firebase/Firebase.config';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
@@ -58,8 +58,8 @@ const AuthProvider = ({ children }) => {
                 setLoading(false)
             }
 
-            
-            
+
+
         })
         return () => {
             unSubscribe()

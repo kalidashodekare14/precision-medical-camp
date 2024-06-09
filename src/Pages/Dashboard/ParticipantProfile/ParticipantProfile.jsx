@@ -16,7 +16,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const ParticipantProfile = () => {
 
 
-    const { user } = useAuth()
+    const { user, userUpdateSystem } = useAuth()
     const axiosSecure = useAxiosSecure()
     const axiosPublic = useAxiosPublic()
 
@@ -49,14 +49,24 @@ const ParticipantProfile = () => {
         }
         const resData = await axiosPublic.put(`/profile-update/${profile._id}`, updateProfile)
         console.log(resData.data)
-        if(resData.data.modifiedCount > 0){
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Your information update successfuly",
-                showConfirmButton: false,
-                timer: 1500
-              });
+        if (resData.data.modifiedCount > 0) {
+            console.log(res.user)
+            userUpdateSystem(data.name, res.data.data.display_url)
+                .then(res => {
+                    console.log('update Done', res.data)
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your information update successfuly",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+                .catch(error => {
+                    console.log(error.message)
+                })
+
+
         }
         refetch()
     }
