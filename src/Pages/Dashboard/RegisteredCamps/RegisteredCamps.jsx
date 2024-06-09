@@ -17,6 +17,7 @@ const RegisteredCamps = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
     const [rating, setRating] = useState(0)
+    const [searchSystem, setSearchSystem] = useState('')
     const itemsPerPage = 10
 
     const { data: regisCamps = [], refetch } = useQuery({
@@ -27,6 +28,15 @@ const RegisteredCamps = () => {
 
         }
     })
+
+
+
+    // const searchCamp = camps.filter(camp =>{
+    //     const query = searchSystem.toLocaleLowerCase()
+
+    // })
+
+
 
     const {
         currentPage,
@@ -43,7 +53,6 @@ const RegisteredCamps = () => {
     const handleChange = (event, value) => {
         setPage(value)
     }
-
 
     console.log(regisCamps)
 
@@ -98,6 +107,9 @@ const RegisteredCamps = () => {
         <div>
             <div>
                 <h1 className='text-center text-4xl my-10'>Registered Camps</h1>
+                <div className='text-center my-10'>
+                    <input onChange={(e) => setSearchSystem(e.target.value)} placeholder='Search' className='input input-bordered' type="text" />
+                </div>
             </div>
             <div className="overflow-x-auto">
                 <table className="table">

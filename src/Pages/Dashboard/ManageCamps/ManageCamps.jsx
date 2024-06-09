@@ -10,6 +10,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import { Link } from 'react-router-dom';
+import usePagination from '../../../Hooks/usePagination';
+import { Pagination } from '@mui/material';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -20,6 +22,35 @@ const ManageCamps = () => {
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
     const [startDate, setStartDate] = useState(new Date());
+    const [searchQuery, setSearchQuery] = useState('')
+    const itemsPerPage = 10;
+
+
+    const searchSystem = populars.filter(camp => {
+        const query = searchQuery.toLowerCase()
+        return (
+            camp.camp_name?.toLowerCase().includes(query) ||
+            camp.healthcare_professional?.toLowerCase().includes(query)
+        )
+    })
+
+
+
+    const {
+        currentPage,
+        totalPages,
+        startIndex,
+        endIndex,
+        nextPage,
+        prevPage,
+        setPage
+    } = usePagination(searchSystem.length, itemsPerPage)
+
+    const currentItems = searchSystem.slice(startIndex, endIndex + 1)
+
+    const handleChange = (event, value) => {
+        setPage(value)
+    }
 
 
     const handleDeleteCamp = (popular) => {
@@ -99,6 +130,9 @@ const ManageCamps = () => {
         <div className='min-h-screen  space-y-10 flex flex-col my-10 items-center'>
             <div>
                 <h1 className='text-center text-4xl'>Manage Camps</h1>
+                <div className='text-center my-10'>
+                    <input onChange={(e) => setSearchQuery(e.target.value)} placeholder='Search' className='input input-bordered' type="text" />
+                </div>
             </div>
             <div className="w-full overflow-x-auto">
                 <table className="table">
@@ -115,7 +149,7 @@ const ManageCamps = () => {
                     </thead>
                     <tbody>
                         {
-                            populars.map((popular, index) => <tr key={popular._id}>
+                            currentItems.map((popular, index) => <tr key={popular._id}>
                                 <th>{index + 1}</th>
                                 <td>{popular.camp_name}</td>
                                 <td>{popular.healthcare_professional}</td>
@@ -137,6 +171,15 @@ const ManageCamps = () => {
 
                     </tbody>
                 </table>
+                <div className='flex justify-center items-center my-10'>
+                    <Pagination
+                        count={totalPages}
+                        page={currentPage}
+                        onChange={handleChange}
+                        variant="outlined"
+                        siblingCount={0}
+                        color="primary" />
+                </div>
             </div>
         </div>
     );

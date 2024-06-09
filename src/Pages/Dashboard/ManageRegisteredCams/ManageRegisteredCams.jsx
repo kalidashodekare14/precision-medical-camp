@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../Hooks/useAuth';
@@ -11,6 +11,7 @@ import { Pagination } from '@mui/material';
 const ManageRegisteredCams = () => {
 
     const { user } = useAuth()
+    const [searchQuery, setSearchQuery]  = useState('')
     const axiosSecure = useAxiosSecure()
     const itemsPerPage = 10;
 
@@ -24,6 +25,18 @@ const ManageRegisteredCams = () => {
     })
 
 
+    const setSearchSystem = manageCamps.filter(camp =>{
+        const query = searchQuery.toLowerCase()
+        return (
+            camp.camp_name.toLowerCase().includes(query) ||
+            camp.healthcare_professional.toLowerCase().includes(query) ||
+            camp.payment_status.toLowerCase().includes(query) ||
+            camp.participant_name.toLowerCase().includes(query) ||
+            camp.camp_fees.toString().toLowerCase().includes(query)
+        )
+    })
+
+
     const {
         currentPage,
         totalPages,
@@ -32,9 +45,9 @@ const ManageRegisteredCams = () => {
         nextPage,
         prevPage,
         setPage
-    } = usePagination(manageCamps.length, itemsPerPage)
+    } = usePagination(setSearchSystem.length, itemsPerPage)
 
-    const currentItems = manageCamps.slice(startIndex, endIndex + 1)
+    const currentItems = setSearchSystem.slice(startIndex, endIndex + 1)
 
     const handleChange = (event, value) => {
         setPage(value)
@@ -82,11 +95,16 @@ const ManageRegisteredCams = () => {
 
     }
 
+    
+
 
     return (
         <div>
             <div>
                 <h1 className='text-center text-4xl my-10'>Registered Camps</h1>
+                <div className='text-center my-10'>
+                    <input onChange={(e) => setSearchQuery(e.target.value)} placeholder='Search' className='input input-bordered' type="text" />
+                </div>
             </div>
             <div className="overflow-x-auto">
                 <table className="table">
