@@ -76,11 +76,11 @@ const AvailableDetail = () => {
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row">
-                <div className='w-[50%]'>
-                    <img src={available.image} />
+                <div className='lg:w-[50%]'>
+                    <img className='w-full' src={available.image} />
                 </div>
                 <div className='space-y-3'>
-                    <h1 className="text-5xl font-bold">{available.camp_name}</h1>
+                    <h1 className="lg:text-5xl text-2xl font-bold">{available.camp_name}</h1>
                     <div className='flex items-center space-x-2'>
                         <span>
                             <FaUserDoctor className='text-3xl text-[#0a4b46]' />

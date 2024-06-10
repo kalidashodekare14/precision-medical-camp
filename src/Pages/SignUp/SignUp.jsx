@@ -84,7 +84,7 @@ const SignUp = () => {
     return (
         <div className='signUpBackground bg-no-repeat bg-cover bg-center flex flex-row-reverse  justify-start items-center min-h-screen'>
             <div className='text-white bg-[#00000076] lg:w-[40%] lg:mx-20 border-2 border-yellow-500 w-full mx-3 p-2'>
-                <form onSubmit={handleSubmit(onSubmit)} className='space-y-3'>
+                <form onSubmit={handleSubmit(onSubmit)} className='space-y-3 lg:p-5'>
                     <div className='flex flex-col w-full'>
                         <label htmlFor="">Name</label>
                         <input {...register("name", { required: true })} type="name" placeholder='Enter Your Full Name' className="text-black w-full input input-bordered" />

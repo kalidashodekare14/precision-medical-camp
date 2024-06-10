@@ -74,11 +74,11 @@ const ViewDetail = () => {
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row">
-                <div className='w-[50%]'>
+                <div className='lg:w-[50%]'>
                     <img className='w-full' src={details.image} />
                 </div>
                 <div className='space-y-3'>
-                    <h1 className="text-5xl font-bold">{details.camp_name}</h1>
+                    <h1 className="lg:text-5xl text-2xl font-bold">{details.camp_name}</h1>
                     <div className='flex items-center space-x-2'>
                         <span>
                             <FaUserDoctor className='text-3xl' />

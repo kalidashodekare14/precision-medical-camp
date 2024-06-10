@@ -14,7 +14,7 @@ const DashBoard = () => {
 
     return (
         <div className='flex flex-col lg:flex-row'>
-            <div className='lg:w-[20%] w-full border lg:min-h-screen'>
+            <div className='lg:w-[20%] bg-[#07332f] text-white w-full border lg:min-h-screen'>
                 <ul className='menu'>
                     {
                         isOranizer ? <>
@@ -72,7 +72,7 @@ const DashBoard = () => {
                                 </li>
                             </>
                     }
-                    <div className="divider">OR</div>
+                    <div className="divider divider-accent">OR</div>
                     <li>
                         <NavLink to="/">
                             <FaHome className='text-2xl' />
