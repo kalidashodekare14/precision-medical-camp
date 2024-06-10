@@ -55,8 +55,10 @@ const Footer = () => {
                     Stay informed and never miss out <br /> on the latest news, health tips.
                 </a>
                 <a className="link link-hover border rounded-xl">
-                    <input placeholder='Enter Your Email' className='bg-opacity-0 input input-bordered' type="text" />
-                    <button className='border p-5 rounded-xl'>Send</button>
+                    <div>
+                        <input placeholder='Enter Your Email' className='w-40 bg-opacity-0 input input-bordered' type="text" />
+                        <button className='border p-5 rounded-xl'>Send</button>
+                    </div>
                 </a>
             </nav>
         </footer>
