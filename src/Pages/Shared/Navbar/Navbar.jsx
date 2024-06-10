@@ -50,17 +50,6 @@ const Navbar = () => {
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#07332f] rounded-box w-52">
                         {links}
-                        {
-                            user && <>
-                                <li>
-                                    <p className="justify-between active:bg-opacity-0">
-                                        <span className='disabled text-white'>{user.displayName}</span>
-                                    </p>
-                                </li>
-                                <li><Link to={`${isOranizer ? '/dashboard/organizer-profile' : '/dashboard/participant-profile'}`} className='text-white'>Dashboard</Link></li>
-                                <li><span onClick={handleLogOut} className='text-white'>Logout</span></li>
-                            </>
-                        }
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">
