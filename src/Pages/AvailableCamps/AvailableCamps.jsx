@@ -20,8 +20,7 @@ const AvailableCamps = () => {
         queryKey: ['populars'],
         queryFn: async () => {
             const res = await axiosPublic.get('/popular-medical-camp')
-            // setAvailable(res.data)
-            // setSearch(res.data)
+
             return res.data
         }
     })
@@ -37,7 +36,7 @@ const AvailableCamps = () => {
             date.includes(query)
         )
     })
-    
+
 
 
     const handleCollumn = () => {
@@ -52,7 +51,14 @@ const AvailableCamps = () => {
                 <div className='text-center my-10'>
                     <input onChange={(e) => setSearchQuery(e.target.value)} placeholder='Search' className='input input-bordered' type="text" />
                 </div>
-                
+                <details className="dropdown">
+                    <summary className="m-1 btn">Sort By</summary>
+                    <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                        <li><a>Item 1</a></li>
+                        <li><a>Item 2</a></li>
+                    </ul>
+                </details>
+
             </div>
             <div className='flex justify-end mx-40 mt-10'>
                 <div onClick={handleCollumn}>
