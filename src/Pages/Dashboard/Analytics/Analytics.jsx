@@ -38,7 +38,10 @@ const Analytics = () => {
 
 
     return (
-        <div>
+        <div className='min-h-screen flex flex-col justify-center items-center'>
+            <div>
+                <h1 className='text-4xl my-10'>Analytics</h1>
+            </div>
             <BarChart
                 width={800}
                 height={400}
