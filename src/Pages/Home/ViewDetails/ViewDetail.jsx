@@ -94,10 +94,7 @@ const ViewDetail = () => {
                             <MdDateRange className='text-3xl' />
                             <p>{new Date(details.date_and_time).toLocaleDateString()}</p>
                         </div>
-                        <div className='flex items-center space-x-1'>
-                            <FaDollarSign className='text-3xl' />
-                            <p>{details.camp_fees}</p>
-                        </div>
+                        
                     </div>
                     <div className='flex items-center space-x-5'>
                         <p className='space-x-2 bg-blue-500 p-1'>
