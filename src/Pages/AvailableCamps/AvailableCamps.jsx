@@ -62,7 +62,7 @@ const AvailableCamps = () => {
     return (
         <div>
             <div className='space-y-6 bg-fixed flex flex-col justify-center items-center available bg-no-repeat bg-center bg-cover h-[70vh]'>
-                <h1 className='text-5xl text-white'>Available Camp</h1>
+                <h1 className='lg:text-5xl text-[40px] text-white text-center'>Available Camp</h1>
                 <div className='text-center my-10'>
                     <input onChange={(e) => setSearchQuery(e.target.value)} placeholder='Search' className='input input-bordered' type="text" />
                 </div>
@@ -86,7 +86,7 @@ const AvailableCamps = () => {
 
                 </div>
             </div>
-            <div className={`my-20 mx-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${towCollumn ? '3' : '2'} gap-5`}>
+            <div className={`my-20 lg:mx-32 mx-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${towCollumn ? '3' : '2'} gap-5`}>
                 {
                     searchSystem.map(popular => <div className="card bg-base-100 shadow-xl">
                         <figure><img className='h-[40vh] w-full' src={popular.image} alt="Shoes" /></figure>

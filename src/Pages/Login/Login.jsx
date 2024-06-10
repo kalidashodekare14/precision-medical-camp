@@ -59,7 +59,7 @@ const Login = () => {
     }
 
     return (
-        <div className='loginBackground bg-no-repeat bg-cover bg-center ps-6 flex flex-row-reverse  justify-end items-center min-h-screen'>
+        <div className='loginBackground bg-no-repeat bg-cover bg-center ps-6 flex flex-row-reverse  justify-end pe-3 items-center min-h-screen'>
             <div className='lg:w-[40%] lg:mx-20 border-2 text-white bg-[#00000076] border-yellow-500 p-10 '>
                 <form onSubmit={handleSubmit(onSubmit)} className='space-y-3'>
                     <div className='flex flex-col w-full'>

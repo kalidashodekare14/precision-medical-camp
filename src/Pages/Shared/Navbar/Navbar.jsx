@@ -14,7 +14,7 @@ const Navbar = () => {
         <li>
             <NavLink
                 className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-white border-b-2 border-[#29c178]  rounded-none" : "text-white"
+                    isPending ? "pending" : isActive ? "focus:text-white text-white border-b-2 border-[#29c178]  rounded-none" : "text-white"
                 }
                 to="/">
                 Home
@@ -23,7 +23,7 @@ const Navbar = () => {
         <li>
             <NavLink
                 className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "border-b-2 border-[#29c178] active:text-white text-white rounded-none" : "text-white"
+                    isPending ? "pending" : isActive ? "focus:text-white border-b-2 border-[#29c178] active:text-white text-white rounded-none" : "text-white"
                 }
                 to="/available-camps">
                 Available Camps
