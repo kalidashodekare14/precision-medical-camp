@@ -15,7 +15,7 @@ const PopularMedicalCamp = () => {
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
             {
-                populars.slice(0, 6).map(popular => <div className="card w-96 bg-base-100 shadow-xl">
+                populars.slice(0, 6).map(popular => <div className="card lg:w-96 mx-3 bg-base-100 shadow-xl">
                     <figure><img className='h-[40vh]' src={popular.image} alt="Shoes" /></figure>
                     <div className="space-y-2 text-left p-5">
                         <div className='flex justify-between'>
