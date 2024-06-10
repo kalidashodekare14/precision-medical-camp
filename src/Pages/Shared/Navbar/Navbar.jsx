@@ -14,7 +14,7 @@ const Navbar = () => {
         <li>
             <NavLink
                 className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? " border-b-2 border-[#29c178] rounded-none" : ""
+                    isPending ? "pending" : isActive ? "text-white border-b-2 border-[#29c178]  rounded-none" : "text-white"
                 }
                 to="/">
                 Home
@@ -23,7 +23,7 @@ const Navbar = () => {
         <li>
             <NavLink
                 className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "border-b-2 border-[#29c178] rounded-none" : ""
+                    isPending ? "pending" : isActive ? "border-b-2 border-[#29c178] active:text-white text-white rounded-none" : "text-white"
                 }
                 to="/available-camps">
                 Available Camps
@@ -42,7 +42,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="  navbar  bg-base-100">
+        <div className="  navbar  bg-[#07332f]">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

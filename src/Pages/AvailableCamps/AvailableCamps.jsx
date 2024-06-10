@@ -15,17 +15,22 @@ const AvailableCamps = () => {
     const axiosPublic = useAxiosPublic()
     const [towCollumn, setTowCollumn] = useState(true)
     const [searchQuery, setSearchQuery] = useState('')
+    const [sorted, setSorted] = useState([])
 
     const { data: populars = [] } = useQuery({
         queryKey: ['populars'],
         queryFn: async () => {
             const res = await axiosPublic.get('/popular-medical-camp')
-
+            setSorted(res.data)
             return res.data
         }
     })
 
     console.log(populars)
+
+
+    console.log(sorted)
+
 
     const searchSystem = populars.filter(camp => {
         const query = searchQuery.toLowerCase()
@@ -37,9 +42,16 @@ const AvailableCamps = () => {
         )
     })
 
+    const handleCampFees = () => {
+        const check = sorted.sort((a, b) => b.camp_fees - a.camp_fees)
+        setSorted([...check])
+    }
 
-    
-
+    const handleCampName = () =>{
+        const sortedCopy = [...sorted]
+        sortedCopy.sort((a, b) => b.camp_name.localeCompare(a.camp_name))
+        setSorted(sortedCopy)
+    }
 
 
     const handleCollumn = () => {
@@ -57,8 +69,8 @@ const AvailableCamps = () => {
                 <details className="dropdown">
                     <summary className="m-1 btn">Sort By</summary>
                     <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                        <li><a>Item 1</a></li>
-                        <li><a>Item 2</a></li>
+                        <li onClick={handleCampFees}><a>Camp Fees</a></li>
+                        <li onCanPlay={handleCampName}><a>Item 2</a></li>
                     </ul>
                 </details>
 
