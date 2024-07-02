@@ -11,7 +11,8 @@
 
 ## 🔗 Live Link: [precision medical camp](https://precision-medical-camp.web.app)
 
-
+## Overview
+This is a Medical Management camp website. Participants can visit this website and take any camp service. Those who are affected by various diseases on this website can come here and cure the disease with the services. This website can provide services to cure various patients easily.
 
 
 
