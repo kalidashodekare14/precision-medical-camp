@@ -40,3 +40,5 @@ This is a Medical Management camp website. Participants can visit this website a
  
 - And these feedbags are shown in the feedbag section of home. so that other Participant can see it.
 
+## Technologies
+[![My Skills](https://skillicons.dev/icons?i=react,tailwind,nodejs,express,figma&theme=light)](https://skillicons.dev)
