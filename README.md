@@ -42,3 +42,30 @@ This is a Medical Management camp website. Participants can visit this website a
 
 ## Technologies
 [![My Skills](https://skillicons.dev/icons?i=react,tailwind,nodejs,express)](https://skillicons.dev)
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://link-to-project
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
