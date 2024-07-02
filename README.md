@@ -25,7 +25,7 @@ This is a Medical Management camp website. Participants can visit this website a
 - Organizer can see if any Participant joins the camp. And if the Participant pays then he can confirm.
 
 ## Technologies
-[![My Skills](https://skillicons.dev/icons?i=react,tailwind,nodejs,express)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=react,tailwind,nodejs,express,mongodb)](https://skillicons.dev)
 
 
 ## Run Locally
